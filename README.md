@@ -22,11 +22,14 @@ Simple gate acts like an image preview node which also, optionally, passes the i
 
 ![image](docs/simplegate.png)
 
-The gate has three settings, and an optional sleep (intended for when the upstream workflow is very quick, to prevent you spamming the backend with restarts)
+The gate has three settings, and an optional sleep.
 
 - `closed` sleep for x seconds, then cancel the workflow
 - `open` sleep for x seconds, then pass the image through, and set the gate to `closed`
 - `held open` sleep for x seconds, then pass the image through, and remain `held open`
+
+The `sleep` has two purposes. It can prevent you from spamming the backend with restarts when the upstream workflow is very quick.
+It can also be used to allow you to choose to pass an image through (or block it) when you see it. If you change the gate setting during the pause, the node will use the new setting. So, for instance, if you set the sleep to 5, then when the image preview appears you have 5 seconds in which you can decide to open or to close the gate.
 
 ## That's it
 
